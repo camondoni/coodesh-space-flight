@@ -1,13 +1,13 @@
 import { injectable, inject } from "tsyringe";
 import { IArticlesRepository } from "../../repositories/IArticlesRepository";
 @injectable()
-export class ListArticlesUseCase {
+export class DeleteArticleUseCase {
     constructor(
         @inject("ArticlesRepository")
         private articlesRepository: IArticlesRepository
     ) {}
-    async execute(page: number, limit: number) {
-        const article = await this.articlesRepository.listArticles(page, limit);
+    execute(id: string) {
+        const article = this.articlesRepository.deleteArticle(id);
         return article;
     }
 }

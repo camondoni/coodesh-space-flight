@@ -7,7 +7,16 @@ export class ArticlesRepository implements IArticlesRepository {
         return await Articles.create(data);
     }
 
-    async listArticles(): Promise<Object> {
-        return await Articles.find();
+    async listArticles(page: number, limit: number): Promise<Object> {
+        return await Articles.find()
+            .skip(page * limit)
+            .limit(limit);
+    }
+    async getArticle(id: string): Promise<Object> {
+        return await Articles.findById(id);
+    }
+
+    deleteArticle(id: string): void {
+        Articles.findById(id).remove();
     }
 }

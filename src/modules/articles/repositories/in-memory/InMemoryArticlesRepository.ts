@@ -11,10 +11,25 @@ export class InMemoryArticlesRepository implements IArticlesRepository {
             createdAt: new Date(),
         });
         this.articles.push(articles);
-        return data;
+        return articles;
     }
 
-    async listArticles(): Promise<Object> {
-        return this.articles;
+    async listArticles(page: number, limit: number): Promise<IArticles> {
+        if (limit > 0) {
+            return this.articles.slice((page - 1) * limit, page * limit);
+        } else {
+            return this.articles;
+        }
+    }
+
+    async getArticle(id: string): Promise<IArticles> {
+        return await this.articles.find((article) => article._id === id);
+    }
+
+    deleteArticle(id: string): void {
+        const articleIndex = this.articles.indexOf(
+            (article) => article._id === id
+        );
+        this.articles.splice(articleIndex, 1);
     }
 }
