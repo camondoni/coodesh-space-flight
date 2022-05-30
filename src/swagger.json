@@ -1,0 +1,205 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+        "title" : "Articles Documentation",
+        "description" : "Coodesh Challange",
+        "version" : "1.0.0",
+        "contact" : {
+            "email" : "camondoni@gmail.com"
+        } 
+    },
+    "url": "http://localhost:3000/api/v1",
+    "paths" : {
+        "/api/v1/articles" : {
+            "get" : {
+                "tags" : ["Articles"],
+                "summary" : "List all articles",
+                "description" : "List all articles",
+                "responses" : {
+                    "200" : {
+                        "description" : "Success"
+                    }                 
+                },
+                "parameters":[  
+                    {  
+                       "name":"page",
+                       "in":"query",
+                       "description":"Page cursor",
+                       "required":false,
+                       "type":"string"
+                    },
+                    {  
+                        "name":"limit",
+                        "in":"query",
+                        "description":"Page limit",
+                        "required":false,
+                        "type":"integer"
+                     }
+                ]
+            },
+            "post" : {
+                "tags" :  ["Articles"],
+                "summary" : "Create a Article",
+                "description" : "Create a new Article",
+                "responses" : {
+                    "201" : {
+                        "description" : "Article created with success"
+                    }                 
+                },
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "featured": {
+                                        "type" : "boolean"
+                                    },
+                                    "title": {
+                                        "type" : "string"
+                                    },
+                                    "url" : {
+                                        "type" : "string"
+                                    },
+                                    "imageUrl": {
+                                        "type" : "string"
+                                    },
+                                    "newsSite": {
+                                        "type" : "string"
+                                    },
+                                    "publishedAt": {
+                                        "type" : "string"
+                                    },
+                                    "launches": {
+                                        "type" : "array",
+                                        "items" : {
+                                            "properties" : {
+                                                "provider" : {
+                                                    "type" : "string"
+                                                }
+                                            }
+                                           
+                                        }
+                                    },
+                                    "events": {
+                                        "type" : "array",
+                                        "items" : {
+                                            "properties" : {
+                                                "provider" : {
+                                                    "type" : "string"
+                                                }
+                                            }
+                                           
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }           
+        },
+        "/api/v1/articles/{id}": {
+            "put" : {
+                "tags" :  ["Articles"],
+                "summary" : "Update a Article",
+                "description" : "Update a Article",
+                "responses" : {
+                    "200" : {
+                        "description" : "Article updated with success"
+                    },
+                    "404" : {
+                        "description" : "Article not found"
+                    }
+                },
+                "requestBody" : {
+                    "content" : {
+                        "application/json" : {
+                            "schema" : {
+                                "type" : "object",
+                                "properties" : {
+                                    "featured": {
+                                        "type" : "boolean"
+                                    },
+                                    "title": {
+                                        "type" : "string"
+                                    },
+                                    "url" : {
+                                        "type" : "string"
+                                    },
+                                    "imageUrl": {
+                                        "type" : "string"
+                                    },
+                                    "newsSite": {
+                                        "type" : "string"
+                                    },
+                                    "publishedAt": {
+                                        "type" : "string"
+                                    },
+                                    "launches": {
+                                        "type" : "array",
+                                        "items" : {
+                                            "properties" : {
+                                                "provider" : {
+                                                    "type" : "string"
+                                                }
+                                            }
+                                           
+                                        }
+                                    },
+                                    "events": {
+                                        "type" : "array",
+                                        "items" : {
+                                            "properties" : {
+                                                "provider" : {
+                                                    "type" : "string"
+                                                }
+                                            }
+                                           
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } ,
+            "delete" : {
+                "parameters":[  
+                    {  
+                       "name":"id",
+                       "in":"path",
+                       "description":"Id of Article",
+                       "required":true,
+                       "type":"string"
+                    }
+                ],
+                "tags" : ["Articles"],
+                "summary" : "Delete Article",
+                "description" : "Remove Article",
+                "responses" : {
+                    "204" : {
+                        "description" : "Article deleted with success"
+                    },
+                    "404" : {
+                        "description" : "Article not found"
+                    }
+                }
+            },
+            "get" : {
+                "parameters":[  
+                    {  
+                       "name":"id",
+                       "in":"path",
+                       "description":"Id of Article",
+                       "required":true,
+                       "type":"string"
+                    }
+                ],
+                "tags" : ["Articles"],
+                "summary" : "Get Article",
+                "description" : "Get specified Article"
+            }
+        }
+    }
+}

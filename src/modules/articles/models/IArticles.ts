@@ -2,15 +2,16 @@ interface IArticles {
     _id?: string;
     updatedAt?: Date;
     createdAt?: Date;
-    featured: boolean;
+    spaceArticleId?: string;
+    featured?: boolean;
     title: string;
-    url: string;
-    imageUrl: string;
-    newsSite: string;
-    summary: string;
-    publishedAt: string;
-    launches: IArticlesLaunches[];
-    events: IArticlesEvents[];
+    url?: string;
+    imageUrl?: string;
+    newsSite?: string;
+    summary?: string;
+    publishedAt?: string;
+    launches?: IArticlesLaunches[];
+    events?: IArticlesEvents[];
 }
 
 interface IArticlesLaunches {

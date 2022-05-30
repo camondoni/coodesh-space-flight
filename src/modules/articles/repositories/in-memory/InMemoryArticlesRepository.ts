@@ -32,4 +32,29 @@ export class InMemoryArticlesRepository implements IArticlesRepository {
         );
         this.articles.splice(articleIndex, 1);
     }
+
+    async updateArticle(
+        id: string,
+        data: Object
+    ): Promise<IArticles | undefined> {
+        const articleIndex = this.articles.findIndex(
+            (article) => article._id === id
+        );
+
+        if (articleIndex < 0) {
+            return undefined;
+        }
+
+        let article = {
+            ...this.articles[articleIndex],
+            ...data,
+        };
+
+        article.updatedAt = new Date();
+        this.articles[articleIndex] = article;
+        return this.articles[articleIndex];
+    }
+
+    findSpaceArticle: (id: string) => Promise<IArticles>;
+    updateArticleBySpaceId: (id: string, data: Object) => Promise<IArticles>;
 }

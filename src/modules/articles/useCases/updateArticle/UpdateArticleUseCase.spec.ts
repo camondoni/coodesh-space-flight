@@ -1,0 +1,55 @@
+import { InMemoryArticlesRepository } from "../../repositories/in-memory/InMemoryArticlesRepository";
+import { UpdateArticleUseCase } from "./UpdateArticleUseCase";
+import { AppError } from "../../../../shared/errors/AppError";
+import { v4 as uuid } from "uuid";
+let updateArticleUseCase: UpdateArticleUseCase;
+let inMemoryArticlesRepository: InMemoryArticlesRepository;
+describe("GetArticleUseCase", () => {
+    beforeEach(() => {
+        inMemoryArticlesRepository = new InMemoryArticlesRepository();
+        updateArticleUseCase = new UpdateArticleUseCase(
+            inMemoryArticlesRepository
+        );
+    });
+
+    it("Should update Article", async () => {
+        const createArticle = await inMemoryArticlesRepository.create({
+            title: "NASA plans early June rollout of SLS for next countdown test",
+            url: "https://spacenews.com/nasa-plans-early-june-rollout-of-sls-for-next-countdown-test/",
+            imageUrl:
+                "https://spacenews.com/wp-content/uploads/2022/05/sls-rollback.jpg",
+            newsSite: "SpaceNews",
+            summary:
+                "NASA is gearing up to perform another practice countdown of the Space Launch System in mid-June as it completes repairs to the vehicle from previous tests.",
+            publishedAt: "2022-05-21T23:07:00.000Z",
+            updatedAt: new Date(),
+            featured: false,
+            launches: [
+                {
+                    provider: "Launch Library 2",
+                },
+            ],
+            events: [
+                {
+                    provider: "teste123",
+                },
+            ],
+        });
+
+        const article = await updateArticleUseCase.execute(createArticle._id, {
+            title: "new changes",
+            newsSite: "NewsSpace",
+        });
+
+        expect(article).toMatchObject({
+            title: "new changes",
+            newsSite: "NewsSpace",
+        });
+    });
+
+    it("Should not update Article", async () => {
+        await expect(
+            updateArticleUseCase.execute(uuid(), { title: "nothing" })
+        ).rejects.toEqual(new AppError("Article not found", 404));
+    });
+});

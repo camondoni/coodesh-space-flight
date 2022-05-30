@@ -5,7 +5,7 @@ export class DeleteArticleController {
     async execute(request, response) {
         const { id } = request.params;
         const deleteArticle = container.resolve(DeleteArticleUseCase);
-        deleteArticle.execute(id);
+        await deleteArticle.execute(id);
         return response.status(204).send();
     }
 }
