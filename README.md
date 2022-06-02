@@ -42,4 +42,4 @@ Foram utilizados as seguintes tecnologias:
     - docker-compose up
     - sincronizar os artigos executando o comando yarn sync
 
-Desafio Back-end by Coodesh
+# Desafio Back-end by Coodesh
