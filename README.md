@@ -42,4 +42,8 @@ Foram utilizados as seguintes tecnologias:
     - docker-compose up
     - sincronizar os artigos executando o comando yarn sync
 
+# Documentação
+
+-   Rota do Swagger /documentation
+
 # Desafio Back-end by Coodesh
