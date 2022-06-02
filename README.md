@@ -22,7 +22,7 @@ Foram utilizados as seguintes tecnologias:
 
 # Pré-requisitos
 
-    - Docker
+    - Docker Compose
     - Node
     - Yarn
 
