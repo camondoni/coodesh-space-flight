@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { injectable, inject } from "tsyringe";
 import { IArticlesRepository } from "../../repositories/IArticlesRepository";
 import axios from "axios";

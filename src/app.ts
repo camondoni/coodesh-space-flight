@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+dotenv.config({
+    path: __dirname + "/.env",
+});
 import "reflect-metadata";
 import "express-async-errors";
 
@@ -9,7 +13,6 @@ import { connect } from "./config/database";
 import { scheduler } from "./config/schedulers";
 import { AppError } from "./shared/errors/AppError";
 import swaggerFile from "./swagger.json";
-import dotenv from "dotenv";
 
 const app = express();
 //app.use(cors());
@@ -37,10 +40,6 @@ app.use(
         });
     }
 );
-
-dotenv.config({
-    path: __dirname + "/.env",
-});
 
 scheduler();
 connect();
