@@ -7,8 +7,8 @@ services:
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: camondoni
-      MONGO_INITDB_ROOT_PASSWORD: Exi9064!!
+      MONGO_INITDB_ROOT_USERNAME: USER
+      MONGO_INITDB_ROOT_PASSWORD: PASS
   node:
     container_name: node
     image: "node:alpine"
@@ -19,4 +19,5 @@ services:
     ports:
       - "3000:3000"
     command: "yarn start"
+    
  
